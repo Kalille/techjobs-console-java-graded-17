@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class TechJobs {
                 // What is their search term?
                 System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
-
+//                printJobs(JobData.findByValue(searchTerm));
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
@@ -119,7 +120,22 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+//        System.out.println("printJobs method called");
+        if (!someJobs.isEmpty()){
+            for (HashMap<String,String> jobs : someJobs){
+                System.out.println();
+                System.out.println("*****");
+                for(Map.Entry<String,String> entry : jobs.entrySet()){
+                    String key = entry.getKey();
+                    String value = entry.getValue();
+                    System.out.println(key +": "  + value);
+                }
+                System.out.println("*****");
 
-        System.out.println("printJobs is not implemented yet");
+            }
+        }else {
+            System.out.print("No Results");
+        }
+
     }
 }
